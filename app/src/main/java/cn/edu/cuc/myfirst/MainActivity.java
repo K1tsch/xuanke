@@ -1,6 +1,7 @@
 package cn.edu.cuc.myfirst;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentController;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +13,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-
 public class MainActivity extends AppCompatActivity {
 
     private List<CharSequence> weekList = null;
     private ArrayAdapter<CharSequence> weekAdapter = null;
     private Spinner weekSpinner= null;
+    private Button timetable;
+    private FragmentController controller;
 
     Intent intent1;
     Intent intent2;
@@ -26,6 +28,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initView();
+        controller = FragmentController.getInstance(this, R.id.id_content);
+        controller.showFragment(0);
+
+//        Course course = new Course("移动多媒体设计", "张宏涛", "1-16周，每周周一1-4节 8:00~11:50", "动画203");
+//        //    将Person对象转换成一个json类型的字符串对象
+//        String courseString = JsonTools.getJsonString("course", course);
+//        System.out.println(courseString.toString());
 
         //找到Spinner控件
         weekSpinner = (Spinner)super.findViewById(R.id.week);
